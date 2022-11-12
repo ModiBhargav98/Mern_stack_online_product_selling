@@ -2,6 +2,13 @@ const app = require("./app");
 const dotenv = require("dotenv");
 const connectDatabase = require("./config/database")
 
+// handle uncaught exception
+process.on("uncaughtExceptions",(err) =>{
+    console.log(`Error: ${err.message}`)
+    console.log(`Shuting down the server due to uncaughtExceptions`);
+    process.exit(1)
+})
+
 // config files define port use to import dotenv
 dotenv.config({path:"backend/config/config.env"})
 
